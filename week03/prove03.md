@@ -8,7 +8,7 @@ The python server in this assignment contains details of all of the Star Wars fi
 
 ## Instructions
 
-1. In your "week02/assignment" folder, download the [assignment.py](assignment/assignment.py) file from GitHub.
+1. In your "week03/assignment" folder, download the [assignment.py](assignment/assignment.py) file from GitHub.
 1. Your goal is to retrieve the information from the website as fast as you can.
 
 **Coding Instructions**

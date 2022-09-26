@@ -12,7 +12,7 @@ We have been using threads in Python.  Threads in Python are limited where only 
 
 Processes do not have this limit.  Each process created in Python contains it's own GIL.  This allows processes to run on different CPUs on the computer and are running concurrently and parallel.
 
-## Differences between threads and processes (From week 01)
+## Differences between threads and processes (From week 01 & 02)
 
 ### Python Global Interpreter (GIL)
 

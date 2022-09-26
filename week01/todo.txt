@@ -1,0 +1,11 @@
+Monday, Sept 12
+1. whoami (https://sky.rogue.space/ , https://en.wikipedia.org/wiki/Mobile_User_Objective_System)
+   Devotional tomorrow 11:30
+   Need to update the names of the modules.
+2. What is this class? High level overview.
+3. How to set up you development environment.
+4. Fun with Python
+
+Team02 - fix #2 item
+Module name 07 fixed
+Module name 11 fix
