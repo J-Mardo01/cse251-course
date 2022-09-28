@@ -27,6 +27,7 @@ Instructions:
 import math
 import threading 
 from cse251turtle import *
+import random
 
 # Include CSE 251 common Python files. 
 from cse251 import *
@@ -162,6 +163,24 @@ def run_with_threads(tur, log, main_turtle):
     # TODO - Start add your code here.
     # You need to use 4 threads where each thread concurrently drawing one type of shape.
     # You are free to change any functions in this code except main()
+    threadlock = threading.lock()
+
+    square_thread = threading.Thread(target = draw_square, args=(tur, threadlock))
+    circle_thread = threading.Thread(target = draw_circle, args=(tur, threadlock))
+    triangle_thread = threading.Thread(target = draw_triangle, args=(tur, threadlock))
+    rectangle_thread = threading.Thread(target = draw_rectangle, args=(tur, threadlock))
+
+
+    square_thread.start()
+    circle_thread.start()
+    triangle_thread.start()
+    rectangle_thread.start()
+
+    square_thread.join()
+    circle_thread.join()
+    triangle_thread.join()
+    rectangle_thread.join()
+
 
     log.step_timer('All drawing commands have been created')
 
