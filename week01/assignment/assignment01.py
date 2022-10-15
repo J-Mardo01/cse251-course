@@ -53,7 +53,7 @@ def create_threads(number, log):
     t1.start()
     t1.join()
 
-    t2 = threading.Thread(target = sum , args=(number, ))
+    t2 = threading.Thread(target = sum_numbers , args=(number, ))
     t2.start()
     t2.join()
 

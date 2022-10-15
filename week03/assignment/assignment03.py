@@ -54,20 +54,60 @@ call_count = 0
 
 
 # TODO Add your threaded class definition here
+class Request_thread(threading.Thread):
 
+  def __init__(self, url):
+    threading.Thread.__init__(self)
+    self.url = url
+    self.response = {}
+    
+  def run(self):
+    global call_count
+    response = requests.get(self.url)
+    call_count += 1
+
+    if response.status_code == 200:
+      self.response = response.json()
+    else:
+      print('RESPONSE = ', response.status_code)
 
 # TODO Add any functions you need here
+def film_six():
+  req = Request_thread(rf"{TOP_API_URL}/films/6")
+  req.start()
+  req.join()
 
+def get_characters():
+  req = Request_thread(rf"{TOP_API_URL}/films/6/people")
+  req.start()
+  
+  req.join()
 
 def main():
     log = Log(show_terminal=True)
     log.start_timer('Starting to retrieve data from the server')
 
     # TODO Retrieve Top API urls
-
+    thread = Request_thread(TOP_API_URL)
+    thread.start()
+    thread.join()
+    
+  
     # TODO Retireve Details on film 6
-
+    data = film_six()
     # TODO Display results
+    '''
+    print(f'Title: ', data['title'])
+    print('Director', data['director'])
+    print('Producer', data['producer'])
+    print('Released', data['release_date'])
+    print('Characters', data['characters'])
+    print('Planets', data['planets'])
+    print('Starships', data['starships'])
+    print('Vehicles', data['vehicles'])
+    print('Species', data['species'])
+    '''
+    
 
     log.stop_timer('Total Time To complete')
     log.write(f'There were {call_count} calls to the server')

@@ -14,6 +14,7 @@ Instructions:
 
 from datetime import datetime, timedelta
 import threading
+from urllib import response
 import requests
 import json
 
@@ -24,9 +25,20 @@ from cse251 import *
 # make the API call to request data from the website
 
 class Request_thread(threading.Thread):
+    def __init__(self, url):
     # TODO - Add code to make an API call and return the results
     # https://realpython.com/python-requests/
-    pass
+        threading.Thread.__init__(self)
+        self.url = url
+        self.response = {}
+
+    def run(self):
+        response = requests.get(self.url)
+        if response.status_code == 404:
+            return "Not found..."
+
+        self.response = response.json()
+
 
 class Deck:
 
@@ -35,14 +47,17 @@ class Deck:
         self.reshuffle()
         self.remaining = 52
 
-
     def reshuffle(self):
         # TODO - add call to reshuffle
-        pass
+        reshuffle = Request_thread(rf"https://deckofcardsapi.com/api/deck/{self.id}/shuffle/")
+        reshuffle.start()
+        reshuffle.join()
 
     def draw_card(self):
         # TODO add call to get a card
-        pass
+        draw = Request_thread(rf"https://deckofcardsapi.com/api/deck/{self.id}/draw/")
+        draw.start()
+        draw.join()
 
     def cards_remaining(self):
         return self.remaining
@@ -61,7 +76,7 @@ if __name__ == '__main__':
     #        team_get_deck_id.py program once. You can have
     #        multiple decks if you need them
 
-    deck_id = 'ENTER ID HERE'
+    deck_id = "in1cohm6u8fd"
 
     # Testing Code >>>>>
     deck = Deck(deck_id)
