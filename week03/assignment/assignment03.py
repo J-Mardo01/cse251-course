@@ -89,6 +89,8 @@ def main():
 
     # TODO Retrieve Top API urls
     thread = Request_thread(TOP_API_URL)
+
+    
     thread.start()
     thread.join()
     

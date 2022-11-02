@@ -74,6 +74,8 @@ def merge_normal(arr):
 def merge_sort_thread(arr):
     # TODO - Add your code here to use threads.  Each time the merge algorithm does a recursive
     #        call, you need to create a thread to handle that call
+    first_half = threading.Thread(target = merge_sort, args = arr)
+    second_half = threading.Thread(target = merge_sort, args = arr)
     pass
 
 
@@ -87,14 +89,14 @@ def merge_sort_process(arr):
 # -----------------------------------------------------------------------------
 def main():
     merges = [
-        (merge_sort, ' Normal Merge Sort '), 
+        #(merge_sort, ' Normal Merge Sort '), 
         (merge_sort_thread, ' Threaded Merge Sort '), 
-        (merge_sort_process, ' Processes Merge Sort ')
+        #(merge_sort_process, ' Processes Merge Sort ')
     ]
 
     for merge_function, desc in merges:
         # Create list of random values to sort
-        arr = [random.randint(1, 10_000_000) for _ in range(1_000_000)]
+        arr = [random.randint(1, 10_000_000) for _ in range(100)]
 
         print(f'\n{desc:-^70}')
         print(f'Before: {str(arr[:5])[1:-1]} ... {str(arr[-5:])[1:-1]}')
